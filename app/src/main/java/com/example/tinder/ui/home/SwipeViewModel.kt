@@ -14,9 +14,9 @@ class SwipeViewModel: ViewModel() {
 
     private fun getCardsList() {
         cardsList = mutableListOf(
-            SwipeCardModel(backgroundColor = Color.parseColor("#333333"), "Toyota Supra", R.drawable.ts),
-            SwipeCardModel(backgroundColor = Color.parseColor("#333333"), "Dodge Charger", R.drawable.dch),
-            SwipeCardModel(backgroundColor = Color.parseColor("#333333"), "Chevrolet Camaro", R.drawable.chc)
+            SwipeCardModel(backgroundColor = Color.parseColor("#222222"), "Marina Laswick", R.drawable.d1),
+            SwipeCardModel(backgroundColor = Color.parseColor("#222222"), "Polina Romanova", R.drawable.d2),
+            SwipeCardModel(backgroundColor = Color.parseColor("#222222"), "Kristina Minaeva", R.drawable.d3)
         )
     }
 

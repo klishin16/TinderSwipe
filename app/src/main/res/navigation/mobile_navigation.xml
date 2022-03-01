@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.tinder.ui.settings.SettingsFragment"
-        android:label="fragment_settings"
+        android:name="com.example.tinder.ui.profile.ProfileFragment"
+        android:label="My Profile"
         tools:layout="@layout/fragment_settings" />
 </navigation>

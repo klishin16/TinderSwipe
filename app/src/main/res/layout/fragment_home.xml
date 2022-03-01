@@ -11,14 +11,16 @@
         android:id="@+id/motionLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipChildren="false"
         app:layoutDescription="@xml/fragment_home_scene"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:clipChildren="false">
+        android:padding="5dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
 
 
         <!-- CARD 2 (BOTTOM) -->
@@ -50,11 +52,11 @@
                     android:id="@+id/bottomCardText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="45dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/card_2"
                     android:textColor="@color/white"
                     android:textSize="34sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/bottomCardImage"
+                    app:layout_constraintBottom_toTopOf="@+id/bottomCardSubtext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -62,7 +64,8 @@
                     android:id="@+id/bottomCardSubtext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:maxLines="2"
                     android:text="@string/some_extra_information"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -89,23 +92,24 @@
                     android:id="@+id/topCardImage"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    tools:srcCompat="@drawable/ts"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:srcCompat="@drawable/ts" />
 
                 <TextView
                     android:id="@+id/topCardText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="45dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/card_1"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/white"
                     android:textSize="34sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/topCardImage"
+                    app:layout_constraintBottom_toTopOf="@+id/topCardSubtext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -113,7 +117,9 @@
                     android:id="@+id/topCardSubtext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:maxLines="2"
+                    android:padding="7dp"
                     android:text="@string/some_extra_information"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -127,29 +133,29 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="5dp">
 
         <ImageButton
             android:id="@+id/likeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@null"
-            android:src="@drawable/ic_like_svgrepo_com" />
+            android:src="@drawable/like_svgrepo_com" />
 
         <ImageButton
             android:id="@+id/dislikeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@null"
-            android:src="@drawable/ic_close_svgrepo_com" />
+            android:src="@drawable/skip_svgrepo_com" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

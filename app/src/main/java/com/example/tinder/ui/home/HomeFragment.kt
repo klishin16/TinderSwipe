@@ -32,6 +32,9 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var expandText = false
+    private var expandTextClickCheck = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val carsList = (0..5).map {
@@ -56,12 +59,12 @@ class HomeFragment : Fragment() {
 
         likeButton.setOnClickListener {
             likeAnimation(iBtn = likeButton)
-            binding.motionLayout.transitionToState(R.id.like)
+            binding.motionLayout.transitionToState(R.id.dislike)
         }
 
         dislikeButton.setOnClickListener {
             dislikeAnimation(iBtn = dislikeButton)
-            binding.motionLayout.transitionToState(R.id.dislike)
+            binding.motionLayout.transitionToState(R.id.like)
         }
 
         updateTopCard(viewModel.getTopCard())
@@ -81,10 +84,31 @@ class HomeFragment : Fragment() {
                         updateTopCard(viewModel.getTopCard())
                         updateBottomCard(viewModel.getBottomCard())
                     }
+                    R.id.offSwipeTop -> {
+                        viewModel.swipe()
+                        updateTopCard(viewModel.getTopCard())
+                        updateBottomCard(viewModel.getBottomCard())
+                    }
                 }
             }
 
         })
+
+        binding.topCardSubtext.setOnClickListener {
+            Log.i("HomeFragment", "Expand text")
+            if (expandTextClickCheck) {
+                expandText = !expandText
+                expandTextClickCheck = false
+                if (expandText) {
+                    binding.topCardSubtext.maxLines = 100
+                } else {
+                    binding.topCardSubtext.maxLines = 2
+                }
+            } else {
+                expandTextClickCheck = true
+            }
+
+        }
 
 
         return root
@@ -118,23 +142,19 @@ class HomeFragment : Fragment() {
         animator11.duration = 140
         animator12.duration = 140
 
-        val animator2 = ObjectAnimator.ofFloat(iBtn, View.ROTATION, 0f, 90f)
+        val animator2 = ObjectAnimator.ofFloat(iBtn, View.ALPHA, 1f, 0f, 1f)
         animator2.duration = 200
 
-        val animator3 = ObjectAnimator.ofFloat(iBtn, View.ROTATION, 90f, 0f)
-        animator2.duration = 200
-
-        val animator41 = ObjectAnimator.ofFloat(iBtn, View.SCALE_X, 1.2f, 1.0f)
-        val animator42 = ObjectAnimator.ofFloat(iBtn, View.SCALE_Y, 1.2f, 1.0f)
-        animator41.duration = 140
-        animator42.duration = 140
+        val animator31 = ObjectAnimator.ofFloat(iBtn, View.SCALE_X, 1.2f, 1.0f)
+        val animator32 = ObjectAnimator.ofFloat(iBtn, View.SCALE_Y, 1.2f, 1.0f)
+        animator31.duration = 140
+        animator32.duration = 140
 
         val set = AnimatorSet()
         set.play(animator11).before(animator2)
         set.play(animator12).before(animator2)
-        set.play(animator2).before(animator3)
-        set.play(animator3).before(animator41)
-        set.play(animator3).before(animator42)
+        set.play(animator2).before(animator31)
+        set.play(animator2).before(animator32)
         set.start()
     }
 
@@ -144,13 +164,11 @@ class HomeFragment : Fragment() {
     private fun updateTopCard(cardModel: SwipeCardModel) {
         binding.topCardText.text = cardModel.cardText
         binding.topCardImage.setImageResource(cardModel.image)
-        binding.topCard.setBackgroundColor(cardModel.backgroundColor)
     }
 
     private fun updateBottomCard(cardModel: SwipeCardModel) {
         binding.bottomCardText.text = cardModel.cardText
         binding.bottomCardImage.setImageResource(cardModel.image)
-        binding.bottomCard.setBackgroundColor(cardModel.backgroundColor)
     }
 
 
